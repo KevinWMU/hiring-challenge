@@ -1,3 +1,6 @@
+//initial tinkering with typescript.
+//OBSOLETE
+
 import * as express from 'express';
 
 class Startup {

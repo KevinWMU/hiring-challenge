@@ -1,0 +1,11 @@
+#!/usr/bin/env node
+"use strict";
+
+var server = require("../dist/server");
+
+var app = server.Server.bootstrap().app;
+var port = process.env.PORT || 80;
+
+app.listen(port, function(){
+    console.log("listening on port " + port);
+})

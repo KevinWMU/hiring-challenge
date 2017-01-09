@@ -4,13 +4,15 @@
   "description": "learning to use typescript",
   "main": "HelloWorld.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./bin/www"
   },
   "author": "Kevin Salerno",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.15.2",
     "cookie-parser": "^1.4.3",
+    "ejs": "^2.5.5",
     "express": "^4.14.0",
     "morgan": "^1.7.0",
     "path": "^0.12.7"
