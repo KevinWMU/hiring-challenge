@@ -4,7 +4,7 @@
   "description": "learning to use typescript",
   "main": "HelloWorld.js",
   "scripts": {
-    "dev": "NODE_ENV=development nodemon ./bin/www",
+    "dev": "SET NODE_ENV=development & nodemon ./bin/www",
     "grunt": "grunt",
     "start": "node ./bin/www"
   },
@@ -27,6 +27,7 @@
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-ts": "^6.0.0-beta.6",
+    "nodemon": "^1.11.0",
     "typescript": "^2.1.4"
   }
 }

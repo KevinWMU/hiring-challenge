@@ -1,14 +1,12 @@
 "use strict";
-var BaseRoute = (function () {
-    function BaseRoute() {
-        this.title = "Undefined Route Title";
+class BaseRoute {
+    constructor() {
+        this.title = "Undefined Route Titlez";
     }
-    BaseRoute.prototype.render = function (req, res, view, options) {
+    render(req, res, view, options) {
         res.locals.BASE_URL = "/";
         res.locals.title = this.title;
         res.render(view, options);
-    };
-    return BaseRoute;
-}());
+    }
+}
 exports.BaseRoute = BaseRoute;
-//# sourceMappingURL=route.js.map
