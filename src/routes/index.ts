@@ -3,7 +3,11 @@ import { BaseRoute } from "./route";
 
 export class IndexRoute extends BaseRoute {
     public static create(router: Router){
-        console.log("created index route");
+        console.log("index route loaded");
+
+        router.get("/", (req: Request, res: Response, next: NextFunction) => {
+            new IndexRoute().index(req, res, next);
+        });
     }
 
     constructor() {

@@ -42,6 +42,9 @@ export class Server {
         this.app.use(bodyParser.urlencoded({
             extended: true
         }));
+
+        console.log("DIRECTORY");
+        console.log(__dirname);
     }
 
     public routes() {
