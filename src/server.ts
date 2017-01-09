@@ -4,6 +4,8 @@ import * as express from "express";
 import * as path from "path";
 import * as logger from "morgan";
 
+import { IndexRoute } from "./routes/index";
+
 export class Server {
 
     public app: express.Application;
@@ -43,7 +45,13 @@ export class Server {
     }
 
     public routes() {
-        
+
+        let router: express.Router;
+        router = express.Router();
+
+        IndexRoute.create(router);
+
+        this.app.use(router);
     }
 
 }

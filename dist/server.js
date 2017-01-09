@@ -3,6 +3,7 @@ var bodyParser = require("body-parser");
 var express = require("express");
 var path = require("path");
 var logger = require("morgan");
+var index_1 = require("./routes/index");
 var Server = (function () {
     function Server() {
         this.app = express();
@@ -30,6 +31,10 @@ var Server = (function () {
         }));
     };
     Server.prototype.routes = function () {
+        var router;
+        router = express.Router();
+        index_1.IndexRoute.create(router);
+        this.app.use(router);
     };
     return Server;
 }());
