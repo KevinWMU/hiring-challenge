@@ -5,7 +5,7 @@ export class BaseRoute {
     protected title: string;
 
     constructor() {
-        this.title = "Undefined Route Title"
+        this.title = "Undefined Route Titlez"
     }
 
     public render(req: Request, res: Response, view: string, options?: Object){
