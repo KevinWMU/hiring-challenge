@@ -13,6 +13,13 @@ class UserRoute extends route_1.BaseRoute {
     constructor() {
         super();
     }
+    add(a, b) {
+        if (typeof a == "string") {
+        }
+        if (typeof a == "number") {
+        }
+        return a + b;
+    }
     index(req, res, next) {
         this.title = "Users";
         let options = {
@@ -26,6 +33,8 @@ class UserRoute extends route_1.BaseRoute {
             "message": "ivana user route!"
         };
         this.render(req, res, "index", options);
+    }
+    getUser(req, res, next) {
     }
 }
 exports.UserRoute = UserRoute;

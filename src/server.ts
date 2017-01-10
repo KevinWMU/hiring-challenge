@@ -6,6 +6,8 @@ import * as logger from "morgan";
 
 import { IndexRoute } from "./routes/index";
 
+import mongoose = require("mongoose");
+
 export class Server {
 
     public app: express.Application;
@@ -26,6 +28,8 @@ export class Server {
     }
 
     public config() {
+
+        mongoose.connect('mongodb://localhost:27017/app');
         //define public path for web server content
         this.app.use(express.static(path.join(__dirname, "public")));
 

@@ -1,6 +1,10 @@
 import { NextFunction, Request, Response, Router } from "express";
 import { BaseRoute } from "./route";
 
+import { IUser } from "../interfaces/user";
+import { IUserModel } from "../models/user";
+import { IuserSchema } from "../schemas/user";
+
 export class UserRoute extends BaseRoute {
     public static create(router: Router){
         console.log("user route loaded");
@@ -50,6 +54,16 @@ public add(a: any, b: any): number {
         
         let options: Object = {
             "message" : "ivana user route!"
+        };
+
+        this.render(req, res, "index", options);
+    }
+
+        public createUser(req: Request, res: Response, next: NextFunction) {
+        this.title = "CreateUser";
+        
+        let options: Object = {
+            "message" : "creating user!"
         };
 
         this.render(req, res, "index", options);
