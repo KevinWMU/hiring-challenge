@@ -34,6 +34,13 @@ class UserRoute extends route_1.BaseRoute {
         };
         this.render(req, res, "index", options);
     }
+    createUser(req, res, next) {
+        this.title = "CreateUser";
+        let options = {
+            "message": "creating user!"
+        };
+        this.render(req, res, "index", options);
+    }
     getUser(req, res, next) {
     }
 }

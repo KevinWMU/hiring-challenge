@@ -3,7 +3,7 @@ import { BaseRoute } from "./route";
 
 import { IUser } from "../interfaces/user";
 import { IUserModel } from "../models/user";
-import { IuserSchema } from "../schemas/user";
+import { UserSchema } from "../schemas/user";
 
 export class UserRoute extends BaseRoute {
     public static create(router: Router){
