@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response, Router } from "express";
 import { BaseRoute } from "./route";
 import { UserRoute } from "./user";
+import { PostRoute } from "./post";
 
 import * as express from "express";
 
@@ -17,6 +18,12 @@ export class IndexRoute extends BaseRoute {
         UserRoute.create(userRouter);
 
         router.use('/user', userRouter);
+
+        let postRouter: express.Router;
+        postRouter = express.Router();
+        PostRoute.create(postRouter);
+
+        router.use('/post', postRouter);
 
     }
 

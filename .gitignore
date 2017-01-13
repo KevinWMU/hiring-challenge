@@ -1,4 +1,4 @@
-dist/*
-node_modules/*
-.tscache/*
-.vscode/*
+dist/**
+node_modules/**
+.tscache/**
+.vscode/**

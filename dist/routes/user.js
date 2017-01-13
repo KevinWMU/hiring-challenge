@@ -9,6 +9,21 @@ class UserRoute extends route_1.BaseRoute {
         router.get("/", (req, res, next) => {
             new UserRoute().index(req, res, next);
         });
+        router.get("/:userid", (req, res, next) => {
+            new UserRoute().getUser(req, res, next);
+        });
+        router.put("/:userid", (req, res, next) => {
+            new UserRoute().updateUser(req, res, next);
+        });
+        router.delete("/:userid", (req, res, next) => {
+            new UserRoute().deleteUser(req, res, next);
+        });
+        router.get("/create", (req, res, next) => {
+            new UserRoute().newUser(req, res, next);
+        });
+        router.post("/create", (req, res, next) => {
+            new UserRoute().createUser(req, res, next);
+        });
         router.get("/ivana", (req, res, next) => {
             new UserRoute().ivana(req, res, next);
         });
@@ -46,7 +61,7 @@ class UserRoute extends route_1.BaseRoute {
             }
         });
     }
-    createUser(req, res, next) {
+    newUser(req, res, next) {
         this.title = "CreateUser";
         let options = {
             "message": "creating user!"
@@ -54,6 +69,12 @@ class UserRoute extends route_1.BaseRoute {
         this.render(req, res, "index", options);
     }
     getUser(req, res, next) {
+    }
+    updateUser(req, res, next) {
+    }
+    deleteUser(req, res, next) {
+    }
+    createUser(req, res, next) {
     }
 }
 exports.UserRoute = UserRoute;

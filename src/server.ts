@@ -31,7 +31,7 @@ export class Server {
     public config() {
 
         let connection: mongoose.Connection = mongoose.createConnection('mongodb://localhost:27017/app');
-        
+         
         //use q promises
         global.Promise = require("q").Promise;
         mongoose.Promise = global.Promise;
