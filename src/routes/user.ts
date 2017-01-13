@@ -26,6 +26,26 @@ export class UserRoute extends BaseRoute {
             new UserRoute().index(req, res, next);
         });
 
+        router.get("/:userid", (req: Request, res: Response, next: NextFunction) => {
+            new UserRoute().getUser(req, res, next);
+        });
+
+        router.put("/:userid", (req: Request, res: Response, next: NextFunction) => {
+            new UserRoute().updateUser(req, res, next);
+        });
+
+        router.delete("/:userid", (req: Request, res: Response, next: NextFunction) => {
+            new UserRoute().deleteUser(req, res, next);
+        });
+
+        router.get("/create", (req: Request, res: Response, next: NextFunction) => {
+            new UserRoute().newUser(req, res, next);
+        });
+
+        router.post("/create", (req: Request, res: Response, next: NextFunction) => {
+            new UserRoute().createUser(req, res, next);
+        });
+
         router.get("/ivana", (req: Request, res: Response, next: NextFunction) => {
              new UserRoute().ivana(req, res, next);
         });
@@ -81,7 +101,7 @@ export class UserRoute extends BaseRoute {
 
     }
 
-        public createUser(req: Request, res: Response, next: NextFunction) {
+        public newUser(req: Request, res: Response, next: NextFunction) {
         this.title = "CreateUser";
         
         let options: Object = {
@@ -92,6 +112,24 @@ export class UserRoute extends BaseRoute {
     }
 
     public getUser(req: Request, res: Response, next: NextFunction) {
+        //some search(req.params/)
+        //
+        //res.send(someJSON);
+    }
+
+        public updateUser(req: Request, res: Response, next: NextFunction) {
+        //some search(req.params/)
+        //
+        //res.send(someJSON);
+    }
+
+   public deleteUser(req: Request, res: Response, next: NextFunction) {
+        //some search(req.params/)
+        //
+        //res.send(someJSON);
+    }
+
+    public createUser(req: Request, res: Response, next: NextFunction) {
         //some search(req.params/)
         //
         //res.send(someJSON);
