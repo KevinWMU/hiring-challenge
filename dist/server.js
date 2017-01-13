@@ -18,7 +18,9 @@ class Server {
     api() {
     }
     config() {
-        mongoose.connect('mongodb://localhost:27017/app');
+        let connection = mongoose.createConnection('mongodb://localhost:27017/app');
+        global.Promise = require("q").Promise;
+        mongoose.Promise = global.Promise;
         this.app.use(express.static(path.join(__dirname, "public")));
         this.app.set("views", path.join(__dirname, "views"));
         this.app.set("view engine", "ejs");

@@ -1,6 +1,6 @@
 import { Schema } from "mongoose";
 
-export var UserSchema: Schema = new Schema ({
+export var userSchema: Schema = new Schema ({
 
     createdAt: Date,
     email: String,

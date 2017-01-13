@@ -2,12 +2,25 @@ import { NextFunction, Request, Response, Router } from "express";
 import { BaseRoute } from "./route";
 
 import { IUser } from "../interfaces/user";
+
 import { IUserModel } from "../models/user";
-import { UserSchema } from "../schemas/user";
+//import User = require("../models/user");
+//import { IUserModel } from "../models/user";
+import { userSchema } from "../schemas/user";
+
+import mongoose = require("mongoose");
+
+var User: mongoose.Model<IUserModel> = mongoose.model<IUserModel>("User", userSchema);
 
 export class UserRoute extends BaseRoute {
+
+   // private static User: mongoose.Model<IUserModel>;
+   
+
     public static create(router: Router){
         console.log("user route loaded");
+
+      //this.User = mongoose.model<IUserModel>("User", UserSchema);
 
         router.get("/", (req: Request, res: Response, next: NextFunction) => {
             new UserRoute().index(req, res, next);
@@ -26,18 +39,6 @@ export class UserRoute extends BaseRoute {
         super();
     }
 
-public add(a: number, b: number): number;
-public add(a: string, b: string): number;
-public add(a: any, b: any): number {
-    if (typeof a == "string") {
-
-    }
-    if (typeof a == "number") {
-
-    }
-    return a + b;
-}
-
 
     public index(req: Request, res: Response, next: NextFunction) {
         this.title = "Users";
@@ -51,12 +52,33 @@ public add(a: any, b: any): number {
 
     public ivana(req: Request, res: Response, next: NextFunction) {
         this.title = "Users: Ivana";
-        
+
+
+      let user: IUser = {
+        email: "Ivana@bar.com",
+        firstName: "Ivana",
+        lastName: "Garcia"
+      };
+
+
+      var ivana = new User(user);
+      console.log(ivana);
+      console.log("SAVING");
+      ivana.save(function(err: any, saved: any) {
+          if (err) console.log(err);
+          else {
+              console.log(saved);
+
         let options: Object = {
-            "message" : "ivana user route!"
+            "message" : "ivana user route!",
+            "user" : ivana
         };
 
-        this.render(req, res, "index", options);
+         this.render(req, res, "index", options);
+          }
+      });
+        
+
     }
 
         public createUser(req: Request, res: Response, next: NextFunction) {

@@ -1,5 +1,8 @@
 "use strict";
 const route_1 = require("./route");
+const user_1 = require("../schemas/user");
+const mongoose = require("mongoose");
+var User = mongoose.model("User", user_1.userSchema);
 class UserRoute extends route_1.BaseRoute {
     static create(router) {
         console.log("user route loaded");
@@ -13,13 +16,6 @@ class UserRoute extends route_1.BaseRoute {
     constructor() {
         super();
     }
-    add(a, b) {
-        if (typeof a == "string") {
-        }
-        if (typeof a == "number") {
-        }
-        return a + b;
-    }
     index(req, res, next) {
         this.title = "Users";
         let options = {
@@ -29,10 +25,26 @@ class UserRoute extends route_1.BaseRoute {
     }
     ivana(req, res, next) {
         this.title = "Users: Ivana";
-        let options = {
-            "message": "ivana user route!"
+        let user = {
+            email: "Ivana@bar.com",
+            firstName: "Ivana",
+            lastName: "Garcia"
         };
-        this.render(req, res, "index", options);
+        var ivana = new User(user);
+        console.log(ivana);
+        console.log("SAVING");
+        ivana.save(function (err, saved) {
+            if (err)
+                console.log(err);
+            else {
+                console.log(saved);
+                let options = {
+                    "message": "ivana user route!",
+                    "user": ivana
+                };
+                this.render(req, res, "index", options);
+            }
+        });
     }
     createUser(req, res, next) {
         this.title = "CreateUser";

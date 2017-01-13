@@ -8,6 +8,7 @@ import { IndexRoute } from "./routes/index";
 
 import mongoose = require("mongoose");
 
+
 export class Server {
 
     public app: express.Application;
@@ -29,7 +30,13 @@ export class Server {
 
     public config() {
 
-        mongoose.connect('mongodb://localhost:27017/app');
+        let connection: mongoose.Connection = mongoose.createConnection('mongodb://localhost:27017/app');
+        
+        //use q promises
+        global.Promise = require("q").Promise;
+        mongoose.Promise = global.Promise;
+
+
         //define public path for web server content
         this.app.use(express.static(path.join(__dirname, "public")));
 
