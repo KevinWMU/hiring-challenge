@@ -1,6 +1,7 @@
 "use strict";
 const route_1 = require("./route");
 const user_1 = require("./user");
+const post_1 = require("./post");
 const express = require("express");
 class IndexRoute extends route_1.BaseRoute {
     static create(router) {
@@ -12,6 +13,10 @@ class IndexRoute extends route_1.BaseRoute {
         userRouter = express.Router();
         user_1.UserRoute.create(userRouter);
         router.use('/user', userRouter);
+        let postRouter;
+        postRouter = express.Router();
+        post_1.PostRoute.create(postRouter);
+        router.use('/post', postRouter);
     }
     constructor() {
         super();

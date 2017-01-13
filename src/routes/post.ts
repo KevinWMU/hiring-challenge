@@ -3,14 +3,14 @@ import { BaseRoute } from "./route";
 
 import { IUser } from "../interfaces/user";
 
-import { IUserModel } from "../models/user";
+//import { IUserModel } from "../models/user";
 //import User = require("../models/user");
 //import { IUserModel } from "../models/user";
 import { userSchema } from "../schemas/user";
 
 import mongoose = require("mongoose");
 
-var User: mongoose.Model<IUserModel> = mongoose.model<IUserModel>("User", userSchema);
+//var User: mongoose.Model<IUserModel> = mongoose.model<IUserModel>("User", userSchema);
 
 export class PostRoute extends BaseRoute {
 
