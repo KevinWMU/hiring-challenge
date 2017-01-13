@@ -40,10 +40,6 @@ export class UserRoute extends BaseRoute {
              new UserRoute().login(req, res, next);
         });
 
-        router.post("/login", (req: Request, res: Response, next: NextFunction) => {
-             new UserRoute().checkLogin(req, res, next);
-        });
-
 
                 router.get("/:userid", (req: Request, res: Response, next: NextFunction) => {
             new UserRoute().getUser(req, res, next);
@@ -73,16 +69,18 @@ export class UserRoute extends BaseRoute {
         var users;
         User.find().exec((err, results) => {
             if (err) throw err;
-            else 
+            else {
             users = results;
-        });
-        
+
+
         let options: Object = {
             "message" : "user route!",
             "data": users
         };
 
         this.render(req, res, "index", options);
+            }
+        });
     }
 
 /*public ivana(req: Request, res: Response, next: NextFunction) {
@@ -119,6 +117,12 @@ export class UserRoute extends BaseRoute {
 
     public getUser(req: Request, res: Response, next: NextFunction) {
         //some search(req.params/)
+        User.findById(req.params.userid, (err, doc) => {
+            if (err) throw err;
+            else 
+            res.send(doc);
+        });
+
         //
         //res.send(someJSON);
     }
@@ -131,24 +135,22 @@ export class UserRoute extends BaseRoute {
         */
         res.render("login");
     }
-        public checkLogin(req: Request, res: Response, next: NextFunction) {
-        /*if (req.session){
-            delete req.session;
-        }
-        */
-        let options: Object = {};
-        
-        res.render("index",options);
-    }
-
 
         public updateUser(req: Request, res: Response, next: NextFunction) {
-        //some search(req.params/)
+            var userInfo: IUser = {
+                username: req.body.username,
+                password: req.body.password,
+                firstName: req.body.fname,
+                lastName: req.body.lname,
+                email: req.body.email
+            }
+        User.findByIdAndUpdate(req.params.userid, userInfo).exec();
         //
         //res.send(someJSON);
     }
 
    public deleteUser(req: Request, res: Response, next: NextFunction) {
+       User.findByIdAndRemove(req.params.userid);
         //some search(req.params/)
         //
         //res.send(someJSON);
@@ -159,10 +161,14 @@ export class UserRoute extends BaseRoute {
         username: req.body.username,
         password: req.body.password,
         email: req.body.email,
-        firstName: req.body.firstname,
-        lastName: req.body.lastname
+        firstName: req.body.fname,
+        lastName: req.body.lname
       };
-        res.send(req.body);
+      User.create(newUser, (err, doc) => {
+          if (err) throw err;
+          else
+        res.send(doc);
+      });
         //some search(req.params/)
         //
         //res.send(someJSON);

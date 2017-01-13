@@ -47,6 +47,8 @@ export class Server {
         this.app.use(session({
     name: 'session',
     secret: 'dfQOgm3KhGejWihd',
+        resave: false,
+  	saveUninitialized: true,
     duration: 30 * 60 * 1000,
     activeDuration: 5 * 60 * 1000
 }));

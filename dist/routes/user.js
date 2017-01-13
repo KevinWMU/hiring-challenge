@@ -13,14 +13,8 @@ class UserRoute extends route_1.BaseRoute {
         router.post("/create", (req, res, next) => {
             new UserRoute().createUser(req, res, next);
         });
-        router.get("/ivana", (req, res, next) => {
-            new UserRoute().ivana(req, res, next);
-        });
         router.get("/login", (req, res, next) => {
             new UserRoute().login(req, res, next);
-        });
-        router.post("/login", (req, res, next) => {
-            new UserRoute().checkLogin(req, res, next);
         });
         router.get("/:userid", (req, res, next) => {
             new UserRoute().getUser(req, res, next);
@@ -41,26 +35,14 @@ class UserRoute extends route_1.BaseRoute {
         user_1.default.find().exec((err, results) => {
             if (err)
                 throw err;
-            else
+            else {
                 users = results;
-        });
-        let options = {
-            "message": "user route!",
-            "data": users
-        };
-        this.render(req, res, "index", options);
-    }
-    ivana(req, res, next) {
-        this.title = "Users: Ivana";
-        let user = {
-            email: "Ivana@bar.com",
-            firstName: "Ivana",
-            lastName: "Garcia"
-        };
-        var promise = new user_1.default(user).save();
-        promise.then(function (doc) {
-            console.log(doc);
-            res.send("done");
+                let options = {
+                    "message": "user route!",
+                    "data": users
+                };
+                this.render(req, res, "index", options);
+            }
         });
     }
     newUser(req, res, next) {
@@ -71,23 +53,43 @@ class UserRoute extends route_1.BaseRoute {
         this.render(req, res, "newUser", options);
     }
     getUser(req, res, next) {
+        user_1.default.findById(req.params.userid, (err, doc) => {
+            if (err)
+                throw err;
+            else
+                res.send(doc);
+        });
     }
     login(req, res, next) {
         res.render("login");
     }
     updateUser(req, res, next) {
+        var userInfo = {
+            username: req.body.username,
+            password: req.body.password,
+            firstName: req.body.fname,
+            lastName: req.body.lname,
+            email: req.body.email
+        };
+        user_1.default.findByIdAndUpdate(req.params.userid, userInfo).exec();
     }
     deleteUser(req, res, next) {
+        user_1.default.findByIdAndRemove(req.params.userid);
     }
     createUser(req, res, next) {
         let newUser = {
             username: req.body.username,
             password: req.body.password,
             email: req.body.email,
-            firstName: req.body.firstname,
-            lastName: req.body.lastname
+            firstName: req.body.fname,
+            lastName: req.body.lname
         };
-        res.send(req.body);
+        user_1.default.create(newUser, (err, doc) => {
+            if (err)
+                throw err;
+            else
+                res.send(doc);
+        });
     }
 }
 exports.UserRoute = UserRoute;
